@@ -80,7 +80,7 @@ public class FirstFormView extends JFrame {
 		JMenu appMenu = new JMenu("Програма");
 
 		JMenuItem verification = new JMenuItem("Перевірка");
-//		verification.addActionListener(e -> shop.switchColor());
+		verification.addActionListener(e -> verify());
 
 		JMenuItem calculate = new JMenuItem("Обчислити");
 		calculate.addActionListener(e -> openSecondFrame());
@@ -100,6 +100,25 @@ public class FirstFormView extends JFrame {
 		menuBar.add(appMenu);
 		menuBar.add(editMenu);
 		setJMenuBar(menuBar);
+	}
+
+	protected void verify() {
+		try {
+			if (Float.parseFloat(price.getText()) >= 0
+					&& Integer.parseInt(amount.getText()) >= 0) {
+				JOptionPane.showMessageDialog(this,
+						"You are a cool person :)",
+						"Correct!",
+						JOptionPane.PLAIN_MESSAGE);
+				return;
+			}
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		}
+		JOptionPane.showMessageDialog(this,
+				"The wrong format for one of the inputs.",
+				"ERROR!",
+				JOptionPane.PLAIN_MESSAGE);
 	}
 
 	private void openSecondFrame() {
